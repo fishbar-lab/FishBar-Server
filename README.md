@@ -64,6 +64,7 @@
     postId:UUID,
     comment:String,
     img:[String],
+    userId:UUID,
     likeCount: Number,
     parentId:UUID,
     createdAt:DateTime,
