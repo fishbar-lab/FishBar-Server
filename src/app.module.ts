@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { db } from 'config';
 import { Connection } from 'typeorm';
 import { User } from './entity/user.entity';
+import { ConfigModule } from './config.module';
 import { BalanceMiddleware } from './common/middleware/balance.middleware';
 
 @Module({
@@ -22,7 +23,8 @@ import { BalanceMiddleware } from './common/middleware/balance.middleware';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([User])
+    TypeOrmModule.forFeature([User]),
+    ConfigModule
   ],
   controllers: [AppController, UserController],
   providers: [AppService, UserService],

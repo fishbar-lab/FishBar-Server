@@ -1,21 +1,19 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { threeData as threeData} from 'config';
-import { app as appConfig } from 'config'
-import { ApiException } from '../common/exceptions/api.exception'
-import { ApiErrorCode } from '../common/enums/api-error-code.enum'
 import { User } from '../entity/user.entity'
 import { UserDto } from '../dto/UserDto'
 import { Repository } from 'typeorm';
 import { ListAllEntities } from '../dto/ListAllEntities'
 import { randomHandler } from '../utils/random.handler'
+import { ConfigService } from '../config.service';
 
 @Injectable()
 export class UserService {
 
     constructor(
         @InjectRepository(User)
-        private readonly userRepository: Repository<User>){}
+        private readonly userRepository: Repository<User>,
+        private readonly configService: ConfigService){}
 
     async create(user: UserDto): Promise<User> {
         user.key = randomHandler.genRandomKey()
@@ -31,6 +29,7 @@ export class UserService {
     }
 
     async findAll(query: ListAllEntities) {
+        console.log(this.configService.get('app.port'))
         const result = await this.userRepository.findAndCount({
             skip: query.offset,
             take: query.limit
