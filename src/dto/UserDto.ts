@@ -1,14 +1,27 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { ApiModelProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsString, Max, Min, Length, IsOptional } from 'class-validator';
 
 export class UserDto {
+  @ApiModelProperty()
   @IsString()
   @IsNotEmpty()
-  readonly name: string;
+  userName: string;
 
+  @ApiModelProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  // 密码暂且可以为空
+  password?: string;
+
+  @ApiModelProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  haedImg?: string;
+
+  @ApiModelProperty()
   @IsString()
   @IsNotEmpty()
-  readonly pass: string;
-
-  key: string;
-  
+  @Length(11, 11)
+  // 手机号应该是必填的
+  mobile: string;
 }

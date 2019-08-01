@@ -42,7 +42,9 @@
     shareCount: Number,
     commentCount: Number,
     likeCount: Number,
-    collectCount: Number  // 收藏
+    collectCount: Number,  // 收藏
+    createdAt: timestamp,
+    updatedAt: timestamp
 }
 ```
 

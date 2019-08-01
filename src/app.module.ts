@@ -7,7 +7,7 @@ import { UserService } from './user/user.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { db } from 'config';
 import { Connection } from 'typeorm';
-import { User } from './entity/user.entity';
+import { User, Post } from './entity/entity';
 import { ConfigModule } from './config.module';
 import { BalanceMiddleware } from './common/middleware/balance.middleware';
 
@@ -22,8 +22,10 @@ import { BalanceMiddleware } from './common/middleware/balance.middleware';
       database: db.database,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
+      logging: true,
     }),
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, Post]),
+    // tslint:disable-next-line:trailing-comma
     ConfigModule
   ],
   controllers: [AppController, UserController],

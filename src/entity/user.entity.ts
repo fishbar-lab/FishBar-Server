@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Generated } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Generated, OneToMany } from 'typeorm';
+import { Post } from './post.entity';
 
 @Entity()
 export class User {
@@ -6,22 +7,25 @@ export class User {
   id: number;
 
   @Column()
-  key: string;
+  userName: string;
 
   @Column()
-  name: string;
+  password: string;
 
   @Column()
-  pass: string;
+  haedImg: string;
 
-  @Column('float',{
-    default:0
+  @Column({
+    length: 11,
   })
-  balance: number;
+  mobile: string;
 
-  @CreateDateColumn({type: "timestamp"})
+  @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 
-  @UpdateDateColumn({type: "timestamp"})
+  @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
+
+  @OneToMany(type => Post, post => post.user)
+  posts: Post[];
 }
