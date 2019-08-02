@@ -1,14 +1,10 @@
 import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { APP_INTERCEPTOR } from '@nestjs/core';
-import { UserController } from './user/user.controller';
-import { UserService } from './user/user.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { db } from 'config';
-import { Connection } from 'typeorm';
-import { User, Post } from './entity/entity';
 import { ConfigModule } from './config.module';
+import { PostModule, UserModule } from './module/module';
 import { BalanceMiddleware } from './common/middleware/balance.middleware';
 
 @Module({
@@ -24,12 +20,13 @@ import { BalanceMiddleware } from './common/middleware/balance.middleware';
       synchronize: true,
       logging: true,
     }),
-    TypeOrmModule.forFeature([User, Post]),
     // tslint:disable-next-line:trailing-comma
-    ConfigModule
+    ConfigModule,
+    UserModule,
+    PostModule,
   ],
-  controllers: [AppController, UserController],
-  providers: [AppService, UserService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

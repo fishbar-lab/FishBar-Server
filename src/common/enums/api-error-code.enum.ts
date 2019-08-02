@@ -10,5 +10,6 @@ export enum ApiErrorCode {
     MAINBALANCELOW = 201001, // 主账户余额不足
     SUBBALANCELOW = 201002, // 子账户余额不足
     NOTSUPPORT = 201003, // 不支持该查询
-    INVALIDKEY = 201004 // 无效的key
+    INVALIDKEY = 201004, // 无效的key
+    USERISNOTEXISTS = 201005, // 用户不存在
 }

@@ -18,7 +18,7 @@ export class UserDto {
   @IsOptional()
   haedImg?: string;
 
-  @ApiModelProperty()
+  @ApiModelProperty({ maxLength: 11, minLength: 11 })
   @IsString()
   @IsNotEmpty()
   @Length(11, 11)

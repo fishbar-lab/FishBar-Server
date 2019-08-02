@@ -1,8 +1,8 @@
-import { Controller, Get, Post, HttpException, HttpStatus, Body, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query } from '@nestjs/common';
 import { UserService } from './user.service';
-import { User } from '../entity/user.entity';
-import { UserDto } from '../dto/UserDto';
-import { ListAllEntities } from '../dto/ListAllEntities';
+import { User } from '../../entity/user.entity';
+import { UserDto } from '../../dto/UserDto';
+import { ListAllEntities } from '../../dto/ListAllEntities';
 
 @Controller('user')
 export class UserController {

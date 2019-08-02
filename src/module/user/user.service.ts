@@ -1,11 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from '../entity/user.entity';
-import { UserDto } from '../dto/UserDto';
+import { User } from '../../entity/user.entity';
+import { UserDto } from '../../dto/UserDto';
 import { Repository } from 'typeorm';
-import { ListAllEntities } from '../dto/ListAllEntities';
-import { randomHandler } from '../utils/random.handler';
-import { ConfigService } from '../config.service';
+import { ListAllEntities } from '../../dto/ListAllEntities';
 
 @Injectable()
 export class UserService {
@@ -13,7 +11,7 @@ export class UserService {
     constructor(
         @InjectRepository(User)
         private readonly userRepository: Repository<User>,
-        private readonly configService: ConfigService) { }
+    ) { }
 
     async create(user: UserDto): Promise<User> {
         const result = await this.userRepository.save(user);
@@ -28,10 +26,10 @@ export class UserService {
     }
 
     async findAll(query: ListAllEntities) {
-        console.log(this.configService.get('app.port'));
         const result = await this.userRepository.findAndCount({
             skip: query.offset,
             take: query.limit,
+            relations: ['posts'],
         });
         return {
             count: result[1],
