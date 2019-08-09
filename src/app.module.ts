@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { db } from 'config';
 import { ConfigModule } from './config.module';
-import { PostModule, UserModule } from './module/module';
+import { PostModule, UserModule, TagModule } from './module/module';
 import { BalanceMiddleware } from './common/middleware/balance.middleware';
 
 @Module({
@@ -24,6 +24,7 @@ import { BalanceMiddleware } from './common/middleware/balance.middleware';
     ConfigModule,
     UserModule,
     PostModule,
+    TagModule,
   ],
   controllers: [AppController],
   providers: [AppService],

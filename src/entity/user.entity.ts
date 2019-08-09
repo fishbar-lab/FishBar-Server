@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Generated, OneToMany } from 'typeorm';
 import { Post } from './post.entity';
+import { Tag } from './tag.entity';
 
 @Entity()
 export class User {
@@ -28,4 +29,7 @@ export class User {
 
   @OneToMany(type => Post, post => post.user)
   posts: Post[];
+
+  @OneToMany(type => Tag, tag => tag.user)
+  tags: Tag[];
 }

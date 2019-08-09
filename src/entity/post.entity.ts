@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Generated, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 import { User } from './user.entity';
+import { Tag } from './tag.entity';
 
 @Entity()
 export class Post {
@@ -18,7 +19,13 @@ export class Post {
 
     @Column('text')
     content: string;
-    // todo: 缺少tag列，到时候再添加
+
+    @Column()
+    tagId: number;
+
+    @ManyToOne(type => Tag, tag => tag.posts, { nullable: true })
+    @JoinColumn({ name: 'tagId' })
+    tag: Tag;
 
     @Column({ default: 0 })
     shareCount: number;
