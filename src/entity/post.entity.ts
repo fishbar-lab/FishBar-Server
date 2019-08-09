@@ -20,10 +20,10 @@ export class Post {
     @Column('text')
     content: string;
 
-    @Column()
+    @Column({ nullable: true })
     tagId: number;
 
-    @ManyToOne(type => Tag, tag => tag.posts, { nullable: true })
+    @ManyToOne(type => Tag, tag => tag.posts)
     @JoinColumn({ name: 'tagId' })
     tag: Tag;
 

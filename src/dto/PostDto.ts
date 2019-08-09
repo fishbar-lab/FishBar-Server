@@ -7,7 +7,6 @@ export class PostDto {
     userId: number;
 
     @ApiModelProperty()
-    @IsNumber()
     tagId: number;
 
     @ApiModelProperty({ required: false })
