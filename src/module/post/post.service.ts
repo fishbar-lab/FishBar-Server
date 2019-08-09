@@ -25,10 +25,8 @@ export class PostService {
         postEntity.img = post.img;
         postEntity.content = post.content;
         postEntity.user = user;
-        if (tag) {
-            postEntity.tag = tag;
-        }
-        const result = await this.postRepository.save(post);
+        postEntity.tag = tag ? tag : null;
+        const result = await this.postRepository.save(postEntity);
         return result;
     }
 }
