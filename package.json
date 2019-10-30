@@ -33,7 +33,7 @@
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.3.3",
-    "sequelize": "^5.10.1",
+    "sequelize": "^5.15.1",
     "shortid": "^2.2.14",
     "swagger-ui-express": "^4.0.7",
     "typeorm": "^0.2.18"
